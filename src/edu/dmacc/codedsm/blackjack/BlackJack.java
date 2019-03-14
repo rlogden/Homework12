@@ -61,9 +61,9 @@ public class BlackJack {
                 handPrinter(dealtCards);
                 playerHand.addAll(dealtCards);
             } else if (n.equals("2")) {
-                System.out.print("Player\'s hand was " );
+                System.out.printf("Player\'s hand was %d", getSum(playerHand));
+                System.out.print(" and included ");
                 handPrinter(playerHand);
-                System.out.print("for a score of " + getSum(playerHand));
                 playing = false;
             } else {
                 System.out.print("Invalid input. Your hand is currently ");
@@ -76,7 +76,6 @@ public class BlackJack {
         for (int i = 0; i < toBePrinted.size(); i++) {
             Card card = toBePrinted.get(i);
             System.out.print(card.suit + " - " + card.value);
-
             if (i + 1 < toBePrinted.size()) {
                 System.out.print(", ");
             } else {
