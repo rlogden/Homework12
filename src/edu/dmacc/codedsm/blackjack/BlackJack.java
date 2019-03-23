@@ -147,17 +147,10 @@ public class BlackJack {
                 writeHandsToFile(getSum(playerHand), getSum(dealerHand));
                 playing = false;
             } else if (getSum(playerHand) == 21 && getSum(dealerHand) != 21) {
-                if (getSum(playerHand) > getSum(dealerHand)) {
                     showHands();
                     System.out.printf("%s wins!", "Player");
                     writeHandsToFile(getSum(playerHand), getSum(dealerHand));
                     playing = false;
-                } else if (getSum(playerHand) == getSum(dealerHand)) {
-                    showHands();
-                    System.out.printf("It\'s a tie!");
-                    writeHandsToFile(getSum(playerHand), getSum(dealerHand));
-                    playing = false;
-                }
             }
         }
     }
