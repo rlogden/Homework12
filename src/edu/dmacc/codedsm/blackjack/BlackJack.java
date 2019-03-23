@@ -199,10 +199,8 @@ public class BlackJack {
         outFile = new PrintWriter(file);
         outFile.print("Player hand: ");
         handWriter(player);
-        outFile.println();
-        outFile.print("Dealer hand ");
+        outFile.print("Dealer hand: ");
         handWriter(dealer);
-        outFile.println();
         outFile.println("Player total: " + playerSum);
         outFile.println("Dealer total: " + dealerSum);
         if (playerSum == 21 && dealerSum != 21) {
