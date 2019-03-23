@@ -135,8 +135,7 @@ public class BlackJack {
                         playing = false;
                     }
                 } else {
-                    System.out.print("Invalid input. Your hand is currently ");
-                    handPrinter(playerHand);
+                    System.out.println("Invalid input. ");
                 }
             } else if (getSum(dealerHand) == 21 && getSum(playerHand) != 21) {
                 showHands();
