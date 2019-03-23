@@ -1,3 +1,7 @@
-Player total: 11
-Dealer total: 23
-Player wins!
+Player hand: Diamonds - 8, Spades - 6, Spades - 2, Diamonds - 7 
+
+Dealer hand Jack of Clubs - 10, Ace of Hearts - 1, Spades - 10 
+
+Player total: 23
+Dealer total: 21
+Dealer wins!

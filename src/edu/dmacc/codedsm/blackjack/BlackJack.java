@@ -20,7 +20,9 @@ public class BlackJack {
     public static String[] faceCardsSpades = {"Jack of Spades", "Queen of Spades", "King of Spades", "Ace of Spades"};
     public static ArrayList<Integer> faceCardsValues = new ArrayList<>();
     public static ArrayList<Integer> aceValues = new ArrayList<>();
-
+    public static File file = new File("blackjack_log.txt");
+    public static PrintWriter outFile;
+    ;
     public static void main(String[] args) throws IOException {
         fillDeck(myDeck);
         firstDeal(myDeck, 2);
@@ -109,27 +111,27 @@ public class BlackJack {
                     if (getSum(playerHand) > 21) {
                         showHands();
                         System.out.printf("%s wins!", "Dealer");
-                        writeHandsToFile(getSum(playerHand), getSum(dealerHand));
+                        writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                         playing = false;
                     } else if (getSum(playerHand) > getSum(dealerHand)) {
                         showHands();
                         System.out.printf("%s wins!", "Player");
-                        writeHandsToFile(getSum(playerHand), getSum(dealerHand));
+                        writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                         playing = false;
                     } else if ((getSum(playerHand) < getSum(dealerHand)) && (getSum(dealerHand) <= 21)) {
                         showHands();
                         System.out.printf("%s wins!", "Dealer");
-                        writeHandsToFile(getSum(playerHand), getSum(dealerHand));
+                        writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                         playing = false;
                     } else if ((getSum(playerHand) < getSum(dealerHand)) && (getSum(dealerHand) > 21)) {
                         showHands();
                         System.out.printf("%s wins!", "Player");
-                        writeHandsToFile(getSum(playerHand), getSum(dealerHand));
+                        writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                         playing = false;
                     } else if (getSum(playerHand) == getSum(dealerHand)) {
                         showHands();
                         System.out.printf("It\'s a tie!");
-                        writeHandsToFile(getSum(playerHand), getSum(dealerHand));
+                        writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                         playing = false;
                     }
                 } else {
@@ -139,17 +141,17 @@ public class BlackJack {
             } else if (getSum(dealerHand) == 21 && getSum(playerHand) != 21) {
                 showHands();
                 System.out.printf("%s wins!", "Dealer");
-                writeHandsToFile(getSum(playerHand), getSum(dealerHand));
+                writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                 playing = false;
             } else if (getSum(playerHand) > 21) {
                 showHands();
                 System.out.printf("%s wins!", "Dealer");
-                writeHandsToFile(getSum(playerHand), getSum(dealerHand));
+                writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                 playing = false;
             } else if (getSum(playerHand) == 21 && getSum(dealerHand) != 21) {
                     showHands();
                     System.out.printf("%s wins!", "Player");
-                    writeHandsToFile(getSum(playerHand), getSum(dealerHand));
+                    writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                     playing = false;
             }
         }
@@ -163,6 +165,18 @@ public class BlackJack {
                 System.out.print(", ");
             } else {
                 System.out.println(" ");
+            }
+        }
+    }
+
+    public static void handWriter(ArrayList<Card> toBeWritten) throws FileNotFoundException {
+        for (int i = 0; i < toBeWritten.size(); i++) {
+            Card card = toBeWritten.get(i);
+            outFile.print(card.suit + " - " + card.value);
+            if (i + 1 < toBeWritten.size()) {
+                outFile.print(", ");
+            } else {
+                outFile.println(" ");
             }
         }
     }
@@ -181,9 +195,14 @@ public class BlackJack {
         return sum;
     }
 
-    public static void writeHandsToFile(int playerSum, int dealerSum) throws IOException {
-        File file = new File("blackjack_log.txt");
-        PrintWriter outFile = new PrintWriter(file);
+    public static void writeHandsToFile(int playerSum, int dealerSum, ArrayList<Card> player, ArrayList<Card> dealer) throws IOException {
+        outFile = new PrintWriter(file);
+        outFile.print("Player hand: ");
+        handWriter(player);
+        outFile.println();
+        outFile.print("Dealer hand ");
+        handWriter(dealer);
+        outFile.println();
         outFile.println("Player total: " + playerSum);
         outFile.println("Dealer total: " + dealerSum);
         if (playerSum == 21 && dealerSum != 21) {
