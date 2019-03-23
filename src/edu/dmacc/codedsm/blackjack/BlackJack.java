@@ -22,7 +22,7 @@ public class BlackJack {
     public static ArrayList<Integer> aceValues = new ArrayList<>();
     public static File file = new File("blackjack_log.txt");
     public static PrintWriter outFile;
-    ;
+
     public static void main(String[] args) throws IOException {
         fillDeck(myDeck);
         firstDeal(myDeck, 2);
@@ -149,10 +149,10 @@ public class BlackJack {
                 writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
                 playing = false;
             } else if (getSum(playerHand) == 21 && getSum(dealerHand) != 21) {
-                    showHands();
-                    System.out.printf("%s wins!", "Player");
-                    writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
-                    playing = false;
+                showHands();
+                System.out.printf("%s wins!", "Player");
+                writeHandsToFile(getSum(playerHand), getSum(dealerHand), playerHand, dealerHand);
+                playing = false;
             }
         }
     }
