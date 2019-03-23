@@ -169,7 +169,7 @@ public class BlackJack {
         }
     }
 
-    public static void handWriter(ArrayList<Card> toBeWritten) throws FileNotFoundException {
+    public static void handWriter(ArrayList<Card> toBeWritten) {
         for (int i = 0; i < toBeWritten.size(); i++) {
             Card card = toBeWritten.get(i);
             outFile.print(card.suit + " - " + card.value);
